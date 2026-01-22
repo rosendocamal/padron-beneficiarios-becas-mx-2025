@@ -2,8 +2,7 @@ import re
 
 fields_name = ['PROGRAMA', 'TRIMESTRE', 'CVE_EDO', 'NOM_EDO', 'CVE_MUN', 'NOM_MUN', 'CVE_LOC', 'NOM_LOC', 'BECA', 'FECHA_ALTA']
 period = ['Q1', 'Q2', 'Q3', 'Q4']
-#programs = ['s311', 's283', 's072']
-programs = ['s072']
+programs = ['s311', 's283', 's072']
 
 patron = re.compile(r'"([^"]*)"|([^,]+)')
 def split_regex(line):
