@@ -55,10 +55,11 @@ Por último, utilizo una base de datos con **SQLite** utilizando la librería de
 El archivo final contiene:
 
 - Formato: archivo .db de SQLite
-- Registros: 85,686,053
+- Registros: 85,686,052
+- Nombre de tabla: `BENEFICIARIOS`
 - Columnas principales:
     - `ID` 
-    - `TRIMESTSRE`
+    - `TRIMESTRE`
     - `CVE_EDO`
     - `NOM_EDO` 
     - `CVE_MUN`
@@ -67,6 +68,8 @@ El archivo final contiene:
     - `NOM_LOC`
     - `BECA`
     - `FECHA_ALTA`
+
+![DB in SQLite](img/db.png)
 
 ## Requisitos
 
@@ -95,6 +98,10 @@ python3 scripts/create_db.py
 La base de datos generada estará en el directorio `data/db/` y lista para su análisis.
 
 > ¡IMPORTANTE!: El automatizador ETL es propenso a errores y los scripts dentro de `scripts/etl/` se puede ejecutar por separado. 
+
+![DB in SQLite](img/db_uso.png)
+
+Toma en cuenta los resultados finales o totales del 2025 del programa de becas se hallan contemplando únicamente los registros del trimestre 4. Esto se debe a que los datos se publican de manera acumulada o reporte histórico, es decir que los reportes del 4to trimestre se contiene así mismo y los anteriores, el reporte del 3er trimestre se contiene así y a los anteriores, y así sucesivamente. En esta base de datos, considera el histórico trimestral de los programas de becas durante 2025, donde con la información total del 4to trimestre solo se puede hallar información de tipo geográfico e inyección de apoyo social, no mide datos como inscritos al programa u otras variables. Con la información del 4to trimestre, sumando el total por programa, se puede comparar contra el Presupuesto previsto para el año 2025 y se podrá ver que hubo una ejecución del 98% del presupuesto proyectado.
 
 ## Licencia
 
