@@ -50,47 +50,58 @@ Por último, utilizo una base de datos con **SQLite** utilizando la librería de
 - Python (BeautifulSoup, request, regex, os, time, sqlite3)
 - SQL
 
-## Estructura del proyecto
+## Base de Datos Final
 
-.
-├── data/                        
-│   ├── processed/               
-│   │   ├── s072/                
-│   │   │   └── names_files.txt
-│   │   ├── s283/               
-│   │   │   └── names_files.txt 
-│   │   └── s311/                
-│   │       └── names_files.txt 
-│   ├── raw/                     # Datos crudos
-│   │   ├── datasets/            
-│   │   │   ├── s072/            
-│   │   │   │   ├── Q1/         
-│   │   │   │   ├── Q2/         
-│   │   │   │   ├── Q3/         
-│   │   │   │   ├── Q4/     
-│   │   │   │   └── s072_datasets_links.txt
-│   │   │   ├── s283/            
-│   │   │   │   ├── Q1/         
-│   │   │   │   ├── Q2/         
-│   │   │   │   ├── Q3/         
-│   │   │   │   ├── Q4/         
-│   │   │   │   └── s283_datasets_links.txt
-│   │   │   └── s311/            
-│   │   │       ├── Q1/         
-│   │   │       ├── Q2/         
-│   │   │       ├── Q3/         
-│   │   │       ├── Q4/         
-│   │   │       └── s311_datasets_links.txt
-│   └── db/                      
-│       └── CNBBBJ_2025.db       # Base de datos con los datos consolidados
-├── scripts/                     
-│   ├── etl/                     # Scripts para el proceso de ETL (Extracción, Transformación y Carga)
-│   │   ├── 01_get_download_links.py  # Obtención de enlaces de descarga de los datasets
-│   │   ├── 02_download_files.py      # Descarga masiva de los archivos CSV
-│   │   ├── 03_merging_datasets.py   # Unificación y limpieza de los datasets
-│   │   └── automatic_etl.py         # Secuenciador que automatiza todo el proceso ETL
-│   └── create_db.py                # Creación de la base de datos SQLite y carga de datos
-├── .gitignore                     
-├── LICENSE                        
-├── README.md                      
-└── requirements.txt               # Dependencias necesarias para ejecutar el proyecto
+El archivo final contiene:
+
+- Formato: archivo .db de SQLite
+- Registros: 85,686,053
+- Columnas principales:
+    - `ID` 
+    - `TRIMESTSRE`
+    - `CVE_EDO`
+    - `NOM_EDO` 
+    - `CVE_MUN`
+    - `NOM_MUN`
+    - `CVE_LOC`
+    - `NOM_LOC`
+    - `BECA`
+    - `FECHA_ALTA`
+
+## Requisitos
+
+Para ejecutar este proyecto, necesitas instalar las siguientes dependencias:
+
+```
+pip install -r requirements.txt
+```
+
+## Uso
+
+Clona este repositorio en tu máquina local.
+
+Ejecuta los scripts de ETL para descargar, procesar y cargar los datos en la base de datos:
+
+```
+python3 scripts/etl/automatic_etl.py
+```
+
+Y luego:
+
+```
+python3 scripts/create_db.py
+```
+
+La base de datos generada estará en el directorio `data/db/` y lista para su análisis.
+
+> ¡IMPORTANTE!: El automatizador ETL es propenso a errores y los scripts dentro de `scripts/etl/` se puede ejecutar por separado. 
+
+## Licencia
+
+Este proyecto utiliza datos abiertos del gobierno de México.
+El código se publica bajo licencia MIT. Consulta el archivo [LICENSE.](LICENSE)
+
+## Autor
+
+Proyecto desarrollado por **Rosendo Camal**.
+Contacto: [GitHub](https://github.com/rosendocamal)
