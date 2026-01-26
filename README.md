@@ -6,7 +6,11 @@ Los programas de becas en México para los tres niveles educativos (básica, med
 
 ## Mi proyecto
 
-Este proyecto consolida los *datasets* de los programas de becas de los tres niveles educativos cuya fuente original son los [datos abiertos de México.](https://www.datos.gob.mx/) Los *datasets* fueron descargados, limpiados, estandirizados y fusionados en una sola base de datos lista para su análisis. En total fueron **384 datasets en formato csv**. Esta cantidad se debe a que los datos originales se encuentra dividido en 3 programas de becas (por nivel educativo), presentados por 4 trimestres y por cada una de las 32 entidades federativas del país. El resultado final fue una base de datos en **SQLite** con un peso de **6.3 GB** y un total de **85,686,055 (85.6 millones)** de registros.
+Este proyecto consolida los *datasets* de los programas de becas de los tres niveles educativos cuya fuente original son los [datos abiertos de México.](https://www.datos.gob.mx/) Los *datasets* fueron descargados, limpiados, estandarizados y fusionados en una sola base de datos lista para su análisis. En total fueron **384 datasets en formato csv**. Esta cantidad se debe a que los datos originales se encuentra dividido en 3 programas de becas (por nivel educativo), presentados por 4 trimestres y por cada una de las 32 entidades federativas del país. El resultado final fue una base de datos en **SQLite** con un peso de **6.3 GB** y un total de **85,686,055 (85.6 millones)** de registros.
+
+| INPUT | PROCESO | OUTPUT |
+|-------|---------|--------|
+| 384 archivos CSV / 5.7 GB | Scripts de Python / ETL | Base de datos SQLite normalizada / +18 millones de registros / 6.3 GB |
 
 ## Fuentes de datos
 
@@ -22,13 +26,13 @@ Fueron consultados el día 21 de enero de 2026, con última actualización de lo
 
 1. Obtener los enlances individuales de descarga de los datasets
 
-Antes de generar el script en Python para realizar la descarga masiva de los 384 archivos en formato csv, analicé la estructura HTML de los sitios de datos con la finalida de identificar la manera de automatizar dicha descarga, ya que son 384 enlaces. Una vez encontrado la estructura, los elementos y clases del HTML, con ayuda de la libería de **request** para las peticiones HTTP y **BeautifulSoup** para el parseo del HTML obtuve los enlaces de descarga, los guarde en tres archivos de texto correspondiendo cada uno de los archivos a cada programa de becas.
+Antes de generar el script en Python para realizar la descarga masiva de los 384 archivos en formato csv, analicé la estructura HTML de los sitios de datos con la finalida de identificar la manera de automatizar dicha descarga, ya que son 384 enlaces. Una vez encontrado la estructura, los elementos y clases del HTML, con ayuda de la libería de **request** para las peticiones HTTP y **BeautifulSoup** para el parseo del HTML obtuve los enlaces de descarga, los guardé en tres archivos de texto correspondiendo cada uno de los archivos a cada programa de becas.
 
 > Puedes consultar el web scrapper [aquí.](scripts/etl/01_get_download_links.py)
 
 2. Descarga masiva de los datasets
 
-Con los enlaces guardados de manera persistente en archivos de texto descargo los datasets, con la ventaja de que se puede ejecutar la desccarga en cualquier momento o para tener a mano dichos enlaces para una revisión manual como posible opción. Los datasets se guardan mediante carpetas agrupados por el tipo de programa y el periodo trimestral correspondiente. Se modifica y se adapta el nombre de los archivos para una estandarización que nos ayudará más tarde. Los datasets se guardan en fragmentos o chunks.
+Con los enlaces guardados de manera persistente en archivos de texto descargo los datasets, con la ventaja de que se puede ejecutar la descarga en cualquier momento o para tener a mano dichos enlaces para una revisión manual como posible opción. Los datasets se guardan mediante carpetas agrupados por el tipo de programa y el periodo trimestral correspondiente. Se modifica y se adapta el nombre de los archivos para una estandarización que nos ayudará más tarde. Los datasets se guardan en fragmentos o chunks.
 
 > Puedes consultar el downloader [aquí.](scripts/etl/02_download_files.py)
 
@@ -111,4 +115,5 @@ El código se publica bajo licencia MIT. Consulta el archivo [LICENSE.](LICENSE)
 ## Autor
 
 Proyecto desarrollado por **Rosendo Camal**.
+
 Contacto: [GitHub](https://github.com/rosendocamal)
